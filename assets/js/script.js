@@ -1,4 +1,81 @@
 /*==================================
+* Sicky Headaer
+==================================*/
+window.addEventListener("scroll", function () {
+    const scrollBar = window.scrollY;
+    const headers = document.querySelectorAll(".header-sticky");
+
+    headers.forEach(header => {
+        if (scrollBar > 150) {
+            header.classList.add("sticky-on");
+        } else {
+            header.classList.remove("sticky-on");
+        }
+    });
+});
+
+
+/*==================================
+* Mobile Menu
+==================================*/
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggler = document.querySelector(".gm_menu_toggler");
+    const closeButton = document.querySelector(".gm_mobile-menu .close");
+    const mobileMenu = document.querySelector(".gm_mobile-menu");
+
+    if (menuToggler) {
+        menuToggler.addEventListener("click", function () {
+            mobileMenu.classList.add("active");
+        });
+    }
+
+    if (closeButton) {
+        closeButton.addEventListener("click", function () {
+            mobileMenu.classList.remove("active");
+        });
+    }
+
+    document.querySelectorAll(".gm_mobile-menu ul li.has-submenu i").forEach(function (icon) {
+        icon.addEventListener("click", function () {
+            const submenu = this.nextElementSibling;
+            if (submenu) {
+                submenu.style.display = submenu.style.display === "none" ? "block" : "none";
+            }
+            this.classList.toggle("icon-rotate");
+        });
+    });
+
+    document.addEventListener("mouseup", function (e) {
+        if (mobileMenu && !mobileMenu.contains(e.target) && e.target !== mobileMenu) {
+            mobileMenu.classList.remove("active");
+        }
+    });
+});
+
+
+/*==================================
+* Scroll to top Button
+==================================*/
+window.addEventListener("scroll", function () {
+    const scrollBar = window.scrollY;
+    const scrollTopBtn = document.querySelector(".scroll-top-btn");
+
+    if (scrollBar > 150) {
+        scrollTopBtn.style.display = "block"; // Equivalent to fadeIn()
+    } else {
+        scrollTopBtn.style.display = "none"; // Equivalent to fadeOut()
+    }
+});
+
+// Scroll to top on button click
+document.querySelector(".scroll-top-btn").addEventListener("click", function () {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth" // Smooth scrolling effect
+    });
+});
+
+/*==================================
 * Strech Image 
 ==================================*/
 function gm_stretch() {
@@ -60,12 +137,34 @@ window.addEventListener('resize', gm_stretch);
 * Collection Slide
 ==================================*/
 var swiper = new Swiper(".gm_collections_slides", {
-    slidesPerView: 4,
+    slidesPerView: 1,
     spaceBetween: 30,
     pagination: {
         el: ".gm_collection_pagi",
         type: "progressbar",
     },
+    breakpoints: {
+        480: {
+            slidesPerView: 2,
+            spaceBetween: 15
+        },
+        576: {
+            slidesPerView: 2,
+            spaceBetween: 30
+        },
+        768: {
+            slidesPerView: 3,
+            spaceBetween: 18
+        },
+        992: {
+            slidesPerView: 3,
+            spaceBetween: 30
+        },
+        1280: {
+            slidesPerView: 4,
+            spaceBetween: 30
+        }
+    }
 });
 
 /*==================================
@@ -98,8 +197,29 @@ var swiper = new Swiper('.gm_testimonial-two', {
         nextEl: '.gm_testi-next',
         prevEl: '.gm_testi-prev',
     },
-    slidesPerView: 2,
+    slidesPerView: 1,
     spaceBetween: 30,
+    breakpoints: {
+        480: {
+            spaceBetween: 15
+        },
+        576: {
+            spaceBetween: 15,
+            slidesPerView: 2
+        },
+        768: {
+            spaceBetween: 20,
+            slidesPerView: 2
+        },
+        992: {
+            spaceBetween: 20,
+            slidesPerView: 2
+        },
+        1280: {
+            spaceBetween: 30,
+            slidesPerView: 2
+        }
+    }
 });
 
 /*==================================
@@ -120,12 +240,34 @@ var swiper = new Swiper('.gm_brand_slider ', {
 ==================================*/
 var swiper = new Swiper('.gm_brand_slider-two ', {
     loop: true,
-    slidesPerView: 5,
-    spaceBetween: 30,
+    slidesPerView: 1,
+    spaceBetween: 15,
     autoplay: {
         delay: 3000,
         disableOnInteraction: false,
     },
+    breakpoints: {
+        480: {
+            slidesPerView: 2,
+            spaceBetween: 15
+        },
+        576: {
+            slidesPerView: 2,
+            spaceBetween: 20
+        },
+        768: {
+            slidesPerView: 3,
+            spaceBetween: 20
+        },
+        992: {
+            slidesPerView: 4,
+            spaceBetween: 20
+        },
+        1280: {
+            slidesPerView: 5,
+            spaceBetween: 30
+        }
+    }
 });
 
 /*==================================
@@ -133,8 +275,8 @@ var swiper = new Swiper('.gm_brand_slider-two ', {
 ==================================*/
 var swiper = new Swiper('.gm_collection_slider', {
     loop: true,
-    slidesPerView: 4,
-    spaceBetween: 30,
+    slidesPerView: 1,
+    spaceBetween: 18,
     initialSlide: 0,
     autoplay: {
         delay: 3000,
@@ -144,6 +286,24 @@ var swiper = new Swiper('.gm_collection_slider', {
         nextEl: '.gm_collection-next',
         prevEl: '.gm_collection-prev',
     },
+    breakpoints: {
+        576: {
+            spaceBetween: 20,
+            slidesPerView: 3
+        },
+        768: {
+            spaceBetween: 20,
+            slidesPerView: 3
+        },
+        992: {
+            spaceBetween: 20,
+            slidesPerView: 4
+        },
+        1280: {
+            spaceBetween: 30,
+            slidesPerView: 4
+        }
+    }
 });
 
 /*==================================
@@ -151,56 +311,67 @@ var swiper = new Swiper('.gm_collection_slider', {
 ==================================*/
 document.addEventListener("DOMContentLoaded", () => {
     const offerTimer = document.querySelector(".gm_offer_timer");
-    const offerDate = new Date(offerTimer.getAttribute("data-offer-date")).getTime();
 
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const timeLeft = offerDate - now;
+    if (offerTimer) {
+        const offerDate = new Date(offerTimer.getAttribute("data-offer-date")).getTime();
 
-        if (timeLeft > 0) {
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = offerDate - now;
 
-            offerTimer.innerHTML = `<ul>
-            <li>${days}<span>Days</span> </li>
-            <li class="gm_timerSeparator"><span>:</span></li>
-            <li>${String(hours).padStart(2, '0')}<span>Hrs</span> </li>
-            <li class="gm_timerSeparator"><span>:</span></li>
-            <li>${String(minutes).padStart(2, '0')}<span>Mins</span> </li>
-            <li class="gm_timerSeparator"><span>:</span></li>
-            <li>${String(seconds).padStart(2, '0')}<span>Secs</span></li>
-            </ul>
-            `;
-        } else {
-            offerTimer.innerHTML = "Offer Expired!";
-            clearInterval(intervalId);
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                offerTimer.innerHTML = `<ul>
+                    <li>${days}<span>Days</span> </li>
+                    <li class="gm_timerSeparator"><span>:</span></li>
+                    <li>${String(hours).padStart(2, '0')}<span>Hrs</span> </li>
+                    <li class="gm_timerSeparator"><span>:</span></li>
+                    <li>${String(minutes).padStart(2, '0')}<span>Mins</span> </li>
+                    <li class="gm_timerSeparator"><span>:</span></li>
+                    <li>${String(seconds).padStart(2, '0')}<span>Secs</span></li>
+                </ul>`;
+            } else {
+                offerTimer.innerHTML = "Offer Expired!";
+                clearInterval(intervalId);
+            }
         }
-    }
 
-    const intervalId = setInterval(updateCountdown, 1000);
-    updateCountdown();
+        const intervalId = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    }
 });
 
 /*==================================
 * Header Search Open
 ==================================*/
-document.querySelector(".gm_headerSearch-open").addEventListener("click", function () {
-    document.querySelector(".gm_search_form").classList.add("active");
+document.addEventListener("DOMContentLoaded", function () {
+    const searchOpen = document.querySelector(".gm_headerSearch-open");
+    const searchForm = document.querySelector(".gm_search_form");
+    const searchClose = document.querySelector(".gm_search_form .close");
+
+    if (searchOpen && searchForm && searchClose) {
+        searchOpen.addEventListener("click", function () {
+            searchForm.classList.add("active");
+        });
+
+        searchClose.addEventListener("click", function () {
+            searchForm.classList.remove("active");
+        });
+    }
 });
 
-document.querySelector(".gm_search_form .close").addEventListener("click", function () {
-    document.querySelector(".gm_search_form").classList.remove("active");
-});
 
 /*==================================
 * Hero 03 Plus Toggle 
 ==================================*/
-document.querySelectorAll('.gm_hero_right_content_03 i').forEach(function(icon) {
-    icon.addEventListener('click', function() {
+document.querySelectorAll('.gm_hero_right_content_03 i').forEach(function (icon) {
+    icon.addEventListener('click', function () {
         // Hide other open items
-        document.querySelectorAll('.gm_hreoR_cnt_pdt.active').forEach(function(openContent) {
+        document.querySelectorAll('.gm_hreoR_cnt_pdt.active').forEach(function (openContent) {
             if (openContent !== icon.nextElementSibling) {
                 openContent.classList.remove('active');
             }

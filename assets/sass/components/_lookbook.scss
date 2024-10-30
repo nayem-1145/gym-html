@@ -45,10 +45,14 @@
     background: var(--color-lookbook-bg);
     @include displayFlex(flex, start, start, row);
 
+    @include screen-768 {
+        flex-direction: column;
+    }
+
     &__img {
         flex: 0 0 auto;
         width: 280px;
-        background-image: url(../images/lookbook/lookbook-07-shape.png);
+        background-image: url(../images/lookbook/lookbook-01-shape.png);
         background-size: auto;
         background-position: bottom 23px right 96px;
         background-repeat: no-repeat;
@@ -65,11 +69,30 @@
             border-radius: 50%;
             background: #F4D6B2;
             z-index: -1;
+
+            @include screen-768 {}
+        }
+
+        & img {
+
+            @include screen-768 {
+                text-align: center;
+            }
+        }
+
+        @include screen-768 {
+            margin: 0 auto;
+            margin-left: 50%;
+            transform: translateX(-58%);
         }
     }
 
     &__content {
         padding: 49px 40px 50px 50px;
+
+        @include screen-768 {
+            padding: 49px 20px 50px;
+        }
 
         & h4 {
             font-size: 24px;
@@ -86,6 +109,11 @@
             line-height: 73px;
             text-transform: uppercase;
             margin-bottom: 10px;
+
+            @include screen-768 {
+                font-size: 42px;
+                line-height: 59px;
+            }
         }
 
         & .gm_primary-btn {
@@ -107,7 +135,7 @@
     font-weight: 500;
     line-height: 27px;
     color: var(--text-color);
-    display: inline-block;
+    display: block;
 }
 
 // Lookbook 02 
@@ -136,6 +164,11 @@
             text-transform: uppercase;
             color: var(--color-white);
             margin-bottom: 24px;
+
+            @include portrait-phone {
+                font-size: 34px;
+                line-height: 40px;
+            }
         }
     }
 
@@ -145,6 +178,11 @@
         background-repeat: no-repeat;
         background-size: auto;
         background-position: center;
+
+        & img {
+            max-width: 100%;
+            margin: 0 auto;
+        }
     }
 }
 
@@ -163,6 +201,10 @@
         position: relative;
         padding: 40px;
 
+        @include large-screen {
+            padding: 40px 15px;
+        }
+
         & h4 {
             font-family: var(--body-font);
             font-size: 18px;
@@ -172,6 +214,11 @@
             color: var(--secondary-color);
             text-transform: uppercase;
             margin-bottom: 4px;
+
+            @include portrait-phone {
+                font-size: 12px;
+                line-height: 19.2px;
+            }
         }
 
         & h2 {
@@ -181,6 +228,16 @@
             color: var(--color-white);
             text-transform: uppercase;
             margin-bottom: 31px;
+
+            @include screen-1320 {
+                font-size: 35px;
+                line-height: 47px;
+            }
+
+            @include portrait-phone {
+                font-size: 24px;
+                line-height: 33px;
+            }
         }
     }
 
@@ -202,6 +259,17 @@
         gap: 8px;
         background: var(--color-background);
         color: var(--secondary-color);
+
+        @include large-screen {
+            padding: 14px 20px 13px;
+            font-size: 16px;
+        }
+
+        @include portrait-phone {
+            padding: 10px 12px 9px;
+            font-size: 13px;
+
+        }
 
         i {
             padding: 1px .6px;
@@ -232,6 +300,10 @@
         position: relative;
         padding: 40px;
 
+        @include large-screen {
+            padding: 40px 15px;
+        }
+
         & h4 {
             font-family: var(--body-font);
             font-size: 18px;
@@ -241,6 +313,11 @@
             color: var(--secondary-color);
             text-transform: uppercase;
             margin-bottom: 4px;
+
+            @include portrait-phone {
+                font-size: 12px;
+                line-height: 19.2px;
+            }
         }
 
         & h2 {
@@ -250,6 +327,21 @@
             color: var(--color-heading);
             text-transform: uppercase;
             margin-bottom: 31px;
+
+            @include screen-1320 {
+                font-size: 35px;
+                line-height: 47px;
+            }
+
+            @include large-screen {
+                font-size: 32px;
+                line-height: 44px;
+            }
+
+            @include portrait-phone {
+                font-size: 24px;
+                line-height: 33px;
+            }
         }
     }
 
@@ -270,6 +362,16 @@
     & .gm_primary-btn {
         padding: 16px 20px 15px;
         gap: 8px;
+
+        @include large-screen {
+            padding: 14px 20px 13px;
+            font-size: 16px;
+        }
+
+        @include portrait-phone {
+            padding: 10px 12px 9px;
+            font-size: 13px;
+        }
 
         i {
             padding: 1px .6px;
@@ -299,6 +401,16 @@
             color: var(--color-white);
             text-transform: uppercase;
             margin-bottom: 8px;
+
+            @include screen-1320 {
+                font-size: 35px;
+                line-height: 47px;
+            }
+
+            @include large-screen {
+                font-size: 32px;
+                line-height: 44px;
+            }
         }
     }
 
@@ -350,6 +462,14 @@
     background-position: top left;
     background-repeat: no-repeat;
 
+    @include screen-1320 {
+        background-position: top -18px left -11px;
+    }
+
+    @include large-screen {
+        background-position: top -52px left -21px;
+    }
+
     &>* {
         width: 100%;
         flex: 0 0 auto;
@@ -358,6 +478,10 @@
     &__content {
         position: relative;
         padding: 24px;
+
+        @include large-screen {
+            padding: 24px 15px;
+        }
 
         & h2 {
             font-size: 40px;
@@ -369,11 +493,25 @@
             @include displayFlex(flex, center, center, row);
             column-gap: 16px;
             margin: 0;
+
+            @include screen-1320 {
+                font-size: 35px;
+                line-height: 47px;
+            }
+
+            @include large-screen {
+                font-size: 27px;
+                line-height: 44px;
+            }
         }
     }
 
     &__img {
         @include displayFlex(flex, end, top, row);
+
+        @include screen-1320 {
+            padding-left: 15.1%;
+        }
 
         & img {
             max-width: 100%;
@@ -424,6 +562,16 @@
             color: var(--color-white);
             text-transform: uppercase;
             margin-bottom: 8px;
+
+            @include screen-1320 {
+                font-size: 35px;
+                line-height: 47px;
+            }
+
+            @include large-screen {
+                font-size: 27px;
+                line-height: 44px;
+            }
         }
     }
 
