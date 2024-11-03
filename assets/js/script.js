@@ -180,8 +180,29 @@ var swiper = new Swiper('.gm_testimonial', {
         nextEl: '.gm_testi-next',
         prevEl: '.gm_testi-prev',
     },
-    slidesPerView: 3,
+    slidesPerView: 1,
     spaceBetween: 30,
+    breakpoints: {
+        480: {
+            spaceBetween: 15
+        },
+        576: {
+            spaceBetween: 15,
+            slidesPerView: 2
+        },
+        768: {
+            spaceBetween: 20,
+            slidesPerView: 2
+        },
+        992: {
+            spaceBetween: 20,
+            slidesPerView: 3
+        },
+        1280: {
+            spaceBetween: 30,
+            slidesPerView: 3
+        }
+    }
 });
 
 /*==================================
@@ -227,12 +248,34 @@ var swiper = new Swiper('.gm_testimonial-two', {
 ==================================*/
 var swiper = new Swiper('.gm_brand_slider ', {
     loop: true,
-    slidesPerView: 5,
-    spaceBetween: 30,
+    slidesPerView: 1,
+    spaceBetween: 15,
     autoplay: {
         delay: 3100,
         disableOnInteraction: false,
     },
+    breakpoints: {
+        480: {
+            slidesPerView: 2,
+            spaceBetween: 15
+        },
+        576: {
+            slidesPerView: 2,
+            spaceBetween: 20
+        },
+        768: {
+            slidesPerView: 3,
+            spaceBetween: 20
+        },
+        992: {
+            slidesPerView: 4,
+            spaceBetween: 20
+        },
+        1280: {
+            slidesPerView: 5,
+            spaceBetween: 30
+        }
+    }
 });
 
 /*==================================
@@ -307,12 +350,70 @@ var swiper = new Swiper('.gm_collection_slider', {
 });
 
 /*==================================
+* Offer Product carousel
+==================================*/
+var swiper = new Swiper('.gm_offerPd_deal', {
+    loop: false,
+    slidesPerView: 1,
+    spaceBetween: 30,
+    initialSlide: 0,
+    // autoplay: {
+    //     delay: 3000,
+    //     disableOnInteraction: false,
+    // },
+    pagination: {
+        el: ".gm_offerPd_pagin",
+        clickable: true,
+    },
+    breakpoints: {
+        768: {
+            spaceBetween: 30,
+            slidesPerView: 1
+        },
+        992: {
+            spaceBetween: 20,
+            slidesPerView: 2
+        },
+        1280: {
+            spaceBetween: 30,
+            slidesPerView: 2
+        }
+    }
+});
+
+/*==================================
+* Product Tab  
+==================================*/
+window.addEventListener('load', function () {
+    const shuffleWrapper = document.querySelector('.gm_ncollPDshuffle_wrap');
+    if (shuffleWrapper) {
+        const Shuffle = window.Shuffle;
+        const grid = new Shuffle(shuffleWrapper, {
+            itemSelector: '.gm_ncollPD_item',
+            sizer: '.shuf_sizer',
+        });
+
+        // Select all filter nav items
+        const filterItems = document.querySelectorAll('.gm_NewCollfilter_nav li');
+        filterItems.forEach(item => {
+            item.addEventListener('click', function () {
+                filterItems.forEach(el => el.classList.remove('active'));
+                this.classList.add('active');
+                const groupName = this.getAttribute('data-group');
+                grid.filter(groupName);
+            });
+        });
+    }
+});
+
+
+/*==================================
 * Countdown Timer 
 ==================================*/
 document.addEventListener("DOMContentLoaded", () => {
-    const offerTimer = document.querySelector(".gm_offer_timer");
+    const offerTimers = document.querySelectorAll(".gm_offer_timer");
 
-    if (offerTimer) {
+    offerTimers.forEach((offerTimer) => {
         const offerDate = new Date(offerTimer.getAttribute("data-offer-date")).getTime();
 
         function updateCountdown() {
@@ -326,11 +427,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
                 offerTimer.innerHTML = `<ul>
-                    <li>${days}<span>Days</span> </li>
+                    <li>${days}<span>Days</span></li>
                     <li class="gm_timerSeparator"><span>:</span></li>
-                    <li>${String(hours).padStart(2, '0')}<span>Hrs</span> </li>
+                    <li>${String(hours).padStart(2, '0')}<span>Hrs</span></li>
                     <li class="gm_timerSeparator"><span>:</span></li>
-                    <li>${String(minutes).padStart(2, '0')}<span>Mins</span> </li>
+                    <li>${String(minutes).padStart(2, '0')}<span>Mins</span></li>
                     <li class="gm_timerSeparator"><span>:</span></li>
                     <li>${String(seconds).padStart(2, '0')}<span>Secs</span></li>
                 </ul>`;
@@ -342,7 +443,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const intervalId = setInterval(updateCountdown, 1000);
         updateCountdown();
-    }
+    });
 });
 
 /*==================================

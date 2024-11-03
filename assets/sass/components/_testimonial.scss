@@ -4,6 +4,10 @@
     margin-bottom: 26px;
     position: relative;
 
+    @include screen-460 {
+        padding: 30px;
+    }
+
     &::after {
         position: absolute;
         content: "";
@@ -25,6 +29,21 @@
 
         & p {
             margin-bottom: 0;
+        }
+    }
+
+}
+
+.gm_testimonial_cnt {
+    & p {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 30px;
+        margin: 0;
+
+        @include screen-768 {
+            font-size: 18px;
+            line-height: 28px;
         }
     }
 }
@@ -75,17 +94,24 @@
     }
 }
 
+.gm_testimonial {
+    margin-right: -174px;
 
-
-
-
-.gm_testimonial02 {
-    & .gm_section_heading__subtitle {
-        background: rgba(255, 255, 255, 0.1);
+    @include screen-460 {
+        margin-right: 12px;
     }
 }
 
+
+
+
 // Testimonial Two 
+.gm_testimonial02 {
+    & .gm_section_heading__subtitle {
+        background: rgba(255, 88, 36, 0.1);
+    }
+}
+
 .gm_testimonial_cnt02 {
     padding: 32px 32px 34px;
     background: var(--color-background);
