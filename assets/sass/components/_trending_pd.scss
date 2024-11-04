@@ -65,7 +65,7 @@
     gap: 20px;
     border: 1px solid var(--color-border);
 
-    & .gm_trendingItem__thumb {
+    &__thumb {
         flex: 0 0 auto;
         width: 132px;
         height: 150px;
@@ -78,10 +78,17 @@
             width: auto;
             max-height: 100%;
             height: auto;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        & img:nth-child(2) {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
         }
     }
 
-    & .gm_trendingItem__meta {
+    &__meta {
         & a {
             font-size: 16px;
             font-weight: 500;
@@ -114,7 +121,7 @@
         }
     }
 
-    & .gm_trendingItem__price {
+    &__price {
         @include displayFlex(flex, space-between, center, row);
         position: relative;
     }
@@ -168,6 +175,18 @@
             }
         }
     }
+
+    &:hover {
+        & img:nth-child(1) {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        & img:nth-child(2) {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
 }
 
 // Items 02
@@ -191,6 +210,7 @@
             width: auto;
             max-height: 100%;
             height: auto;
+            transition: opacity 0.4s ease-in-out;
         }
     }
 
@@ -286,6 +306,10 @@
             opacity: 1;
             bottom: 4px;
         }
+        & .gm_trendingItem__thumb{
+            & img:nth-child(1){ opacity: 0;visibility: hidden;}
+            & img:nth-child(2){opacity: 1; visibility: visible;}
+        }
     }
 }
 
@@ -307,6 +331,13 @@
             object-fit: cover;
             max-height: 264px;
             height: auto;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        & img:nth-child(2) {
+            position: absolute;
+            opacity: 0;
+            visibility: hidden
         }
     }
 
@@ -449,6 +480,17 @@
         }
 
     }
+
+    &:hover{
+        & img:nth-child(1){
+            opacity: 0;
+            visibility: visible;
+        }
+        & img:nth-child(2){
+            opacity: 1;
+            visibility: visible;
+        }
+    }
 }
 
 .gm_pd03Actions {
@@ -545,6 +587,7 @@
         @include screen-768 {
             width: 200px;
         }
+
         @include screen-460 {
             width: 100%;
         }
@@ -554,6 +597,13 @@
             width: auto;
             max-height: 100%;
             height: auto;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        & img:nth-child(2) {
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
         }
     }
 
@@ -719,7 +769,15 @@
     &:hover {
         border-color: var(--secondary-color);
 
+        & img:nth-child(1) {
+            opacity: 0;
+            visibility: hidden;
+        }
 
+        & img:nth-child(2) {
+            opacity: 1;
+            visibility: visible;
+        }
     }
 }
 
